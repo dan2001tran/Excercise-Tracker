@@ -6,6 +6,7 @@
 
 {% block main %}
 {{message}}
+{{message2}}
 <table class="table">
     <thead>
       <tr>
@@ -16,14 +17,14 @@
       </tr>
     </thead>
     <tbody>
-   
+      {% for i in range(length)%}
         <tr>
-            <th scope="row">{{lift['id']}}</th>
-            <td>{{lift['excercise']}}</td>
-            <td>{{lift['repsRPE1']}}</td>
-            <td>{{lift['weight']}}</td>
+            <th scope="row">{{lift[i][0]}}</th>
+            <td>{{lift[i][1]}}</td>
+            <td>{{lift[i][2]}}</td>
+            <td>{{lift[i][3]}}</td>
         </tr>
-  
+      {%endfor%}
     </tbody>
   </table>
 {% endblock %}

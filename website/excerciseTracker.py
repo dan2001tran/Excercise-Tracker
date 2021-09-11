@@ -13,7 +13,8 @@ def home():
     cur.execute("SELECT * FROM lifts WHERE id='1'")
     
     lift = cur.fetchall()
-    return render_template("home.html", lift = lift, message = lift)
+    length = len(lift)
+    return render_template("home.html", lift = lift, message = length, length = length)
 
 @excerciseTracker.route('/add')
 def add():
