@@ -1,0 +1,29 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Home
+{% endblock %}
+
+{% block main %}
+{{message}}
+<table class="table">
+    <thead>
+      <tr>
+        <th scope="col">ID#</th>
+        <th scope="col">Excercise</th>
+        <th scope="col">rep (RPE 1)</th>
+        <th scope="col">Weight (LB)</th>
+      </tr>
+    </thead>
+    <tbody>
+   
+        <tr>
+            <th scope="row">{{lift['id']}}</th>
+            <td>{{lift['excercise']}}</td>
+            <td>{{lift['repsRPE1']}}</td>
+            <td>{{lift['weight']}}</td>
+        </tr>
+  
+    </tbody>
+  </table>
+{% endblock %}

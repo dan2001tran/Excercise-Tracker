@@ -1,7 +1,21 @@
-from flask import Blueprint
+from flask import Blueprint, render_template, request, session
+from flask_session import Session
+import sqlite3
+
+
 
 excerciseTracker = Blueprint('excerciseTracker', __name__)
 
 @excerciseTracker.route('/')
 def home():
-    return "<h1>Test</h1>"
+    db = sqlite3.connect('excercise.db')
+    cur = db.cursor()
+    cur.execute("SELECT * FROM lifts WHERE id='1'")
+    
+    lift = cur.fetchall()
+    return render_template("home.html", lift = lift, message = lift)
+
+@excerciseTracker.route('/add')
+def add():
+    
+    return render_template("add.html")
