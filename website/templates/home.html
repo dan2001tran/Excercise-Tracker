@@ -5,15 +5,15 @@
 {% endblock %}
 
 {% block main %}
-{{message}}
-{{message2}}
 <table class="table">
     <thead>
       <tr>
         <th scope="col">ID#</th>
         <th scope="col">Excercise</th>
-        <th scope="col">rep (RPE 1)</th>
         <th scope="col">Weight (LB)</th>
+        <th scope="col">RPE3</th>
+        <th scope="col">RPE2</th>
+        <th scope="col">RPE1</th>
       </tr>
     </thead>
     <tbody>
@@ -23,6 +23,8 @@
             <td>{{lift[i][1]}}</td>
             <td>{{lift[i][2]}}</td>
             <td>{{lift[i][3]}}</td>
+            <td>{{lift[i][4]}}</td>
+            <td>{{lift[i][5]}}</td>
         </tr>
       {%endfor%}
     </tbody>
