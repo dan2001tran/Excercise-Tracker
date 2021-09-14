@@ -1,0 +1,25 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Delete
+{% endblock %}
+
+{% block main %}
+{% if formSent %}
+<h3>The excercise has been deleted from the database</h3>
+{% elif %}
+<h3>What excercise do you want to delete</h3>
+<form method="POST" action="/delete">
+    <div class="form-group row">
+      <label for="Excercise" class="col-sm-2 col-form-label ">Excercise</label>
+      <div class="col-sm-10">
+        <input type="text" class="form-control" id="ExcerciseInput" name="Excercise" placeholder="Enter the Excercise">
+      </div>
+    </div>
+
+    <div class ="form" id="delete-button">
+        <button class="btn btn-custom" type="submit" id="AddButton" >Delete from Database </button>
+    </div>
+</form>
+{% endif %}
+{% endblock %}

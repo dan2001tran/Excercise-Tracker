@@ -2,6 +2,8 @@ from flask import Blueprint, render_template, request, session
 from flask_session import Session
 import sqlite3
 
+from werkzeug.utils import redirect
+
 
 
 excerciseTracker = Blueprint('excerciseTracker', __name__)
@@ -11,18 +13,58 @@ def home():
 
     db = sqlite3.connect('excercise.db')
     cur = db.cursor()
-    cur.execute("SELECT * FROM lifts WHERE id='1'")
+    cur.execute("SELECT * FROM lifts")
     
     lift = cur.fetchall()
     length = len(lift)
+
+    cur.close()
+    db.close()
     return render_template("home.html", lift = lift, message = length, length = length)
 
 @excerciseTracker.route('/add', methods= ['GET', 'POST'])
 def add():
     if request.method == "POST":
+
+        messageGateExcercise = False
+        messageGateRPE = False
+        messageGateWeight = False
+
+        userInput = False
+
         excercise = request.form.get('Excercise')
         if not excercise:
-             return render_template("add.html", messageGate = True, message = "Please enter an excercise")
+             messageGateExcercise = True
+             userInput = True
+        weight = request.form.get('Weight')
+        if not weight:
+             messageGateWeight = True
+             userInput = True
+        rpe3 = request.form.get('RPE3')
+        rpe2 = request.form.get('RPE2')
+        rpe1 = request.form.get('RPE1')
+
+        if not rpe1 and not rpe2 and not rpe3:
+            messageGateRPE = True
+            userInput = True
+        if userInput:
+            return render_template("add.html", messageGateWeight = messageGateWeight, messageGateExcercise = messageGateExcercise, messageGateRPE = messageGateRPE)
+        
+        db = sqlite3.connect('excercise.db')
+        cur = db.cursor()  
+        cur.execute("INSERT INTO lifts (excercise, weight, RPE3, RPE2, RPE1) VALUES (?, ?, ?, ?, ?)", (excercise, weight, rpe3, rpe2, rpe1))
+        
+        db.commit()
+        cur.close()
+        db.close()
+        return redirect("/")
     else:
 
         return render_template("add.html", messageGate = False)
+
+@excerciseTracker.route('/delete', methods= ['GET', 'POST'])
+def delete():
+    if request.method == "POST":
+        return render_template("delete.html", formSent = True)
+    else:
+        return render_template("delete.html", message = "this is a get")

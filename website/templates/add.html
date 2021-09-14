@@ -5,10 +5,29 @@
 {% endblock %}
 
 {% block main %}
-{% if messageGate == True %}
-<h4 class="ErrorInputMessageExcercise">
-    {{message}}
-</h4>
+{% if messageGateExcercise == True %}
+<div class="alert alert-warning alert-dismissible fade show" role="alert">
+    <strong id = "wrongExcerciseMessage">Please enter an excercise</strong> 
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+{% endif %}
+{% if messageGateWeight == True %}
+<div class="alert alert-warning alert-dismissible fade show" role="alert">
+    <strong id = "wrongExcerciseMessage">Please enter a Weight</strong> 
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+{% endif %}
+{% if messageGateRPE == True %}
+<div class="alert alert-warning alert-dismissible fade show" role="alert">
+    <strong id = "wrongExcerciseMessage">Please enter at least one RPE</strong> 
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
 {% endif %}
 <form method="POST" action="/add">
     <div class="form-group row">
