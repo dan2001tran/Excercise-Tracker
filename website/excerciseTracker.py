@@ -121,8 +121,17 @@ def update():
             return render_template("update.html", messageGateExcercise = messageGateExcercise, messageGateUpdate = messageGateUpdate)
         
         db = sqlite3.connect('excercise.db')
-        cur = db.cursor()  
-        cur.execute("INSERT INTO lifts (excercise, weight, reps, RPE3, RPE2, RPE1) VALUES (?, ?, ?, ?, ?, ?)", (excercise.lower(), weight, reps, rpe3, rpe2, rpe1))
+        cur = db.cursor()
+        if weight:
+            cur.execute("UPDATE lifts SET weight=? WHERE excercise=?",(weight, excercise.lower(),))
+        if reps:
+            cur.execute("UPDATE lifts SET reps=? WHERE excercise=?",(reps, excercise.lower(),))
+        if rpe1:
+            cur.execute("UPDATE lifts SET RPE1=? WHERE excercise=?",(rpe1, excercise.lower(),))
+        if rpe2:
+            cur.execute("UPDATE lifts SET RPE2=? WHERE excercise=?",(rpe2, excercise.lower(),))
+        if rpe3:
+            cur.execute("UPDATE lifts SET RPE3=? WHERE excercise=?", (rpe3, excercise.lower(),))
         
         db.commit()
         cur.close()
