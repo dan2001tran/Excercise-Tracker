@@ -5,9 +5,15 @@
 {% endblock %}
 
 {% block main %}
-{% if formSent %}
-<h3>The excercise has been deleted from the database</h3>
-{% elif %}
+{% if messageGateExcercise == True %}
+<div class="alert alert-warning alert-dismissible fade show" role="alert">
+    <strong id = "wrongExcerciseMessage">Please enter an excercise</strong> 
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+
+{% endif %}
 <h3>What excercise do you want to delete</h3>
 <form method="POST" action="/delete">
     <div class="form-group row">
@@ -21,5 +27,5 @@
         <button class="btn btn-custom" type="submit" id="AddButton" >Delete from Database </button>
     </div>
 </form>
-{% endif %}
+
 {% endblock %}

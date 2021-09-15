@@ -11,6 +11,7 @@
         <th scope="col">ID#</th>
         <th scope="col">Excercise</th>
         <th scope="col">Weight (LB)</th>
+        <th scope="col">Rep-Range</th>
         <th scope="col">RPE3</th>
         <th scope="col">RPE2</th>
         <th scope="col">RPE1</th>
@@ -25,6 +26,7 @@
             <td>{{lift[i][3]}}</td>
             <td>{{lift[i][4]}}</td>
             <td>{{lift[i][5]}}</td>
+            <td>{{lift[i][6]}}</td>
         </tr>
       {%endfor%}
     </tbody>
@@ -36,7 +38,7 @@
     </button>
     <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
       <a class="dropdown-item" href="/delete">Delete</a>
-      <a class="dropdown-item" href="#">Update</a>
+      <a class="dropdown-item" href="/update">Update</a>
     </div>
   </div>
 {% endblock %}
